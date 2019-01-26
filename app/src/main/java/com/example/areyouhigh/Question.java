@@ -1,5 +1,9 @@
 package com.example.areyouhigh;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Question {
     private String mQuestions[] = {
             "Adriana's mom had four kids: Marta, Anna, Justina...",
@@ -27,34 +31,45 @@ public class Question {
             {"Old palace", "Museum attic", "Egg", "Ball"}
     };
 
-    private String mCorerctAnswers[] = {"Adriana", "He was playing a board game", "99999999", "They aren't human", "Stop imagining you are in that room", "She was hit with a brick",
+    private String mCorrectAnswers[] = {"Adriana", "He was playing a board game", "99999999", "They aren't human", "Stop imagining you are in that room", "She was hit with a brick",
             "Imagination", "1", "A human", "Egg"};
 
-    public String getQuestion(int x){
+    public String getQuestion(int x) {
         return mQuestions[x];
     }
 
-    public String getChoice1(int x){
+    public String getChoice1(int x) {
         return mChoices[x][0];
     }
 
-    public String getChoice2(int x){
+    public String getChoice2(int x) {
         return mChoices[x][1];
     }
 
-    public String getChoice3(int x){
+    public String getChoice3(int x) {
         return mChoices[x][2];
     }
 
-    public String getChoice4(int x){
+    public String getChoice4(int x) {
         return mChoices[x][3];
     }
 
-    public String getCorrectAnswer(int x){
-        return mCorerctAnswers[x];
+    public String getCorrectAnswer(int x) {
+        return mCorrectAnswers[x];
     }
 
-    public int getQuestionLength(){
+    public int getQuestionLength() {
         return mQuestions.length;
+    }
+
+    public List<Integer> getShufflePositions() {
+        List<Integer> integerList = new ArrayList<>();
+        int x = 0;
+        while (x < mQuestions.length) {
+            integerList.add(x++);
+        }
+        Collections.shuffle(integerList);
+        return integerList;
+
     }
 }
