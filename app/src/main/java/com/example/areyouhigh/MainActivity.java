@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private String correctAnswer;
     public static final String SCORE = "total score";
 
-    List <Integer> positionList = mQuestion.getShufflePositions();
+    List<Integer> positionList = mQuestion.getShufflePositions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +78,16 @@ public class MainActivity extends AppCompatActivity {
         if (number < 10) {
             number++;
             mQuestionNumber.setText("Number " + Integer.toString(number));
-//            Random r = new Random();
-//            int x = r.nextInt(mQuestionLength);
-            Log.d("POSITION", Integer.toString(positionList.get(number-1)));
-            mQuestionDescription.setText(mQuestion.getQuestion(positionList.get(number-1)));
-            mChoice1.setText(mQuestion.getChoice1(positionList.get(number-1)));
-            mChoice2.setText(mQuestion.getChoice2(positionList.get(number-1)));
-            mChoice3.setText(mQuestion.getChoice3(positionList.get(number-1)));
-            mChoice4.setText(mQuestion.getChoice4(positionList.get(number-1)));
-            correctAnswer = mQuestion.getCorrectAnswer(positionList.get(number-1));
+            Log.d("POSITION", Integer.toString(positionList.get(number - 1)));
+
+            mQuestionDescription.setText(mQuestion.getQuestion(positionList.get(number - 1)));
+
+            mChoice1.setText(mQuestion.getChoice1(positionList.get(number - 1)));
+            mChoice2.setText(mQuestion.getChoice2(positionList.get(number - 1)));
+            mChoice3.setText(mQuestion.getChoice3(positionList.get(number - 1)));
+            mChoice4.setText(mQuestion.getChoice4(positionList.get(number - 1)));
+
+            correctAnswer = mQuestion.getCorrectAnswer(positionList.get(number - 1));
         } else {
             launchResultActivity();
         }

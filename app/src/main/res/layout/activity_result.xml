@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultActivity">
-
+    tools:context=".ResultActivity"
+    android:background="@drawable/activity_background">
     <TextView
         android:id="@+id/score_view"
         android:layout_width="wrap_content"
@@ -15,5 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:background="@drawable/textview_background"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:gravity="center"/>
 </android.support.constraint.ConstraintLayout>
