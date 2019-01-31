@@ -1,6 +1,8 @@
 package com.example.areyouhigh;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +14,17 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mQuestionNumber, mQuestionDescription;
-    private Button mChoice1, mChoice2, mChoice3, mChoice4;
-    private int number = 0;
-    private Question mQuestion = new Question();
-    private int mQuestionLength = mQuestion.getQuestionLength();
-    private int score;
-    private String correctAnswer;
     public static final String SCORE = "total score";
+    private TextView mQuestionNumber, mQuestionDescription;
+    private Button mNextButton;
+    private int number = 0;
+    private int score = 0;
+    private Question mQuestion = new Question();
+    private List<Integer> positionList = mQuestion.getShufflePositions();
+    private boolean answered;
+    private int answerIndex;
+    private Button[] mChoices;
 
-    List<Integer> positionList = mQuestion.getShufflePositions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,64 +33,54 @@ public class MainActivity extends AppCompatActivity {
 
         mQuestionNumber = findViewById(R.id.question_num);
         mQuestionDescription = findViewById(R.id.question_des);
-        mChoice1 = findViewById(R.id.choice1);
-        mChoice2 = findViewById(R.id.choice2);
-        mChoice3 = findViewById(R.id.choice3);
-        mChoice4 = findViewById(R.id.choice4);
-        updateQuestion();
+        mNextButton = findViewById(R.id.next_button);
+
+        mChoices = new Button[]{
+                findViewById(R.id.choice1), findViewById(R.id.choice2),
+                findViewById(R.id.choice3), findViewById(R.id.choice4)};
+
+        setQuestion(0);
     }
 
-    public void chooseAnswer1(View view) {
-        if (mChoice1.getText() == correctAnswer) {
-            score++;
-            updateQuestion();
-        } else {
-            updateQuestion();
+    public void setQuestion(int number) {
+        answered = false;
+        int q_num = positionList.get(number);
+        mQuestionNumber.setText("Number " + Integer.toString(number + 1));
+        mQuestionDescription.setText(mQuestion.getQuestion(q_num));
+        for(int i = 0; i < mChoices.length; i++) {
+            mChoices[i].setText(mQuestion.getChoices()[q_num][i]);
+            mChoices[i].setEnabled(true);
+            mChoices[i].setBackgroundResource(R.drawable.button_background);
+        }
+        answerIndex = mQuestion.getCorrectIndex()[q_num];
+        mNextButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void checkAnswer(View view) {
+        if (!answered) {
+            int choice = Integer.parseInt(view.getTag().toString());
+            if (choice == answerIndex) {
+                mChoices[choice].setBackgroundResource(R.drawable.true_choice_background);
+                score++;
+            } else {
+                mChoices[answerIndex].setBackgroundResource(R.drawable.true_choice_background);
+                mChoices[choice].setBackgroundResource(R.drawable.false_choice_background);
+            }
+
+            mNextButton.setVisibility(View.VISIBLE);
+            for(int i = 0; i < mChoices.length; i++) {
+                if (i != choice && i != answerIndex) {
+                    mChoices[i].setEnabled(false);
+                }
+            }
+            answered = true;
         }
     }
 
-    public void chooseAnswer2(View view) {
-        if (mChoice2.getText() == correctAnswer) {
-            score++;
-            updateQuestion();
-        } else {
-            updateQuestion();
-        }
-
-    }
-
-    public void chooseAnswer3(View view) {
-        if (mChoice3.getText() == correctAnswer) {
-            score++;
-            updateQuestion();
-        } else {
-            updateQuestion();
-        }
-    }
-
-    public void chooseAnswer4(View view) {
-        if (mChoice4.getText() == correctAnswer) {
-            score++;
-            updateQuestion();
-        } else {
-            updateQuestion();
-        }
-    }
-
-    private void updateQuestion() {
-        if (number < 10) {
+    public void updateQuestion(View view) {
+        if (number < 9) {
             number++;
-            mQuestionNumber.setText("Number " + Integer.toString(number));
-            Log.d("POSITION", Integer.toString(positionList.get(number - 1)));
-
-            mQuestionDescription.setText(mQuestion.getQuestion(positionList.get(number - 1)));
-
-            mChoice1.setText(mQuestion.getChoice1(positionList.get(number - 1)));
-            mChoice2.setText(mQuestion.getChoice2(positionList.get(number - 1)));
-            mChoice3.setText(mQuestion.getChoice3(positionList.get(number - 1)));
-            mChoice4.setText(mQuestion.getChoice4(positionList.get(number - 1)));
-
-            correctAnswer = mQuestion.getCorrectAnswer(positionList.get(number - 1));
+            setQuestion(number);
         } else {
             launchResultActivity();
         }
@@ -99,3 +92,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+
+
