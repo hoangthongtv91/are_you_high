@@ -81,6 +81,14 @@ public class Question {
             {"North", "West", "South", "East"}
     };
 
+    private String[] mAnswerDescription = {"", "", "", "Bob and Ann are fish", "", "", "", "", "", "", "We can replace \"my father's son\" by \"myself\" since he is the only child. Now remains: \"This man's father is myself\", so this man is his son.",
+            "A Knight cannot make the statement \"I'm no Knight\", since this would be a lie and a Knight always tells the truth. A Knave could also not make the statement, since that would be a true statement, and a Knave never tells the truth. A Normal however can say, \"I'm no Knight\". It is true, and Normals sometimes tell the truth.",
+            "Note: 99 contains TWO nines!",
+            "The only days the Lion can say that he lied on the previous day are Mondays and Thursdays. The only days the Unicorn can say this, are Thursdays and Sundays. Therefore, the only day they both say that is on Thursday.",
+            "", "The third day after Wednesday is Saturday. If the day after tomorrow is Saturday, then today is Thursday. Therefore, the solution is: the day before yesterday was Tuesday.",
+            "", "The butler was the culprit. He said that the he was fetching the mail, but on Sunday, there is no mail delivery!",
+            "", "The south. If the lions haven't eaten in three months, they are dead!"};
+
     private int[] mCorrectIndex = {2, 1, 0, 3, 0, 1, 2, 0, 1, 2, 2, 2, 3, 1, 0, 1, 1, 2, 2, 2};
 
     public String getQuestion(int x) {
@@ -91,7 +99,13 @@ public class Question {
         return mChoices;
     }
 
-    public int[] getCorrectIndex() { return mCorrectIndex; }
+    public String[] getAnswerDescription() {
+        return mAnswerDescription;
+    }
+
+    public int[] getCorrectIndex() {
+        return mCorrectIndex;
+    }
 
     public int getQuestionLength() {
         return mQuestions.length;
