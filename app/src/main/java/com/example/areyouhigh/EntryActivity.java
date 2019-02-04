@@ -22,4 +22,5 @@ public class EntryActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }

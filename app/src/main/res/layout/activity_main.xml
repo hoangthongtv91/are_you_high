@@ -35,11 +35,11 @@
             android:id="@+id/question_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
             android:padding="8dp"
-            android:fontFamily="@font/abril_fatface"
             android:text="Question Description"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
     </ScrollView>
 
     <Button
