@@ -14,6 +14,6 @@ With more than 20 silly questions, you can be able to evaluate how high you curr
   * **Tool:** Android Studio
   * **APIs:** 
     * Android API (https://developer.android.com/)
-    * GIF API (https://github.com/felipecsl/GifImageView)
+    * GIF API (https://github.com/koral--/android-gif-drawable)
   
   
