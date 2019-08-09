@@ -11,9 +11,8 @@ With sets of plentiful silly questions, you can be able to evaluate how high you
 ## Development
   * **Developer:** Thong Hoang Nguyen
   * **Language:** Java
-  * **Tool:** Android Studio
+  * **Tool:** Android Studio, Gradle, Git
   * **APIs:** 
-    * Android API (https://developer.android.com/)
     * GIF API (https://github.com/koral--/android-gif-drawable)
   
   
